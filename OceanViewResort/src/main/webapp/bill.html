@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Bill - Ocean View Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bill.css">
+</head>
+
+<body style="background: var(--bg-color);">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">Ocean View Resort</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="reservations.html" class="active">All Reservations</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header print-hide">
+                <button class="btn btn-secondary" onclick="window.history.back()">← Return to Ledger</button>
+                <button class="btn btn-primary" onclick="window.print()" style="margin-left:auto;">🖨️ Physical
+                    Print</button>
+            </div>
+
+            <div id="loading" style="text-align:center; padding: 3rem;">Compiling dynamic receipt...</div>
+            <div id="errorMsg" class="error-message" style="text-align:center; padding: 3rem; display:none;"></div>
+
+            <div class="bill-container" id="billContent" style="display:none;">
+                <div class="bill-header">
+                    <h1>OCEAN VIEW RESORT</h1>
+                    <p>123 Beachside Avenue, Galle, Southern Province, Sri Lanka</p>
+                    <p>Phone: +94 91 123 4567 | Email: reservations@oceanviewgalle.lk</p>
+                </div>
+
+                <div class="bill-details">
+                    <div class="bill-section">
+                        <h3>Customer Profile</h3>
+                        <p id="billGuestName" style="font-weight: 600;"></p>
+                        <p id="billGuestAddress" style="white-space: pre-wrap; font-size: 0.95rem; color: #4b5563;"></p>
+                    </div>
+                    <div class="bill-section" style="text-align: right;">
+                        <h3>Trace Records</h3>
+                        <p><strong>Reservation #:</strong> <span id="billResNum"></span></p>
+                        <p><strong>Statement Date:</strong> <span id="billDate"></span></p>
+                    </div>
+                </div>
+
+                <table class="bill-table">
+                    <thead>
+                        <tr>
+                            <th>Charge Description</th>
+                            <th>Entry</th>
+                            <th>Exit</th>
+                            <th>Nights</th>
+                            <th>Night Rate (LKR)</th>
+                            <th style="text-align: right;">Extended (LKR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Accommodation: <span id="billRoomType"></span> (#<span id="billRoomNum"></span>)</td>
+                            <td id="billCheckIn"></td>
+                            <td id="billCheckOut"></td>
+                            <td id="billNights"></td>
+                            <td id="billRate"></td>
+                            <td style="text-align: right;" id="billLineTotal"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="bill-summary">
+                    <div class="summary-row">
+                        <span>Base Charges:</span>
+                        <span id="billSubtotal"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Standard Output Tax / VAT (10%):</span>
+                        <span id="billTax"></span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Sum Due on Receipt:</span>
+                        <span id="billGrandTotal"></span>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 5rem; text-align: center; color: var(--text-secondary); font-size: 0.85rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                    <p style="font-weight: 500;">Thank you for your stay at Ocean View Resort.</p>
+                    <p>This is a strictly computer-generated record satisfying standard legal invoice requirements
+                        without signature tracking.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/bill.js"></script>
+</body>
+
+</html>

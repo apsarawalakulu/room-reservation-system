@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Reservation - Ocean View Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .section-title {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">Ocean View Resort</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="reservations.html">All Reservations</a>
+                <a href="new-reservation.html">New Reservation</a>
+                <a href="help.html">Help & Guide</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="btn btn-secondary" style="width: 100%; text-align: center;">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Modify Booking <span id="resNumTitle"
+                        style="color: var(--secondary-color);"></span></h1>
+            </div>
+
+            <div id="loading" style="text-align:center; padding: 3rem;">Loading reservation database constraints...
+            </div>
+
+            <div class="card" id="editFormCard" style="max-width: 900px; margin: 0 auto; display: none;">
+                <form id="reservationForm">
+                    <h3 class="section-title">Guest Profile Updates</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number (10 Digits)</label>
+                            <input type="text" id="contactNumber" required pattern="\d{10}">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Home Address</label>
+                            <textarea id="address" rows="2" required></textarea>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title" style="margin-top: 2rem;">Stay Logistics Alterations</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Check-in Date</label>
+                            <input type="date" id="checkIn" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Check-out Date</label>
+                            <input type="date" id="checkOut" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Number of Guests</label>
+                            <input type="number" id="guestsCount" min="1" max="4" required>
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: flex-end;">
+                            <button type="button" id="checkAvailabilityBtn" class="btn btn-secondary"
+                                style="width: 100%;">Re-Verify Available Rooms</button>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Room Assignment Modification</label>
+                            <select id="roomSelect" required>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Special Requests</label>
+                            <textarea id="specialRequests" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="formError" class="error-message" style="margin-bottom: 1.5rem;"></div>
+
+                    <div
+                        style="text-align: right; margin-top: 1rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()"
+                            style="margin-right: 1rem;">Cancel Changes</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Save Modifications</button>
+                    </div>
+                </form>
+            </div>
+            <div id="errorMsg" class="error-message" style="text-align:center; padding: 3rem; display:none;"></div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/edit-reservation.js"></script>
+</body>
+
+</html>

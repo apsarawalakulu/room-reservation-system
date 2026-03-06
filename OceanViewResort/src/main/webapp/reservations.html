@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reservations - Ocean View Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .filter-bar input,
+        .filter-bar select {
+            width: auto;
+            min-width: 250px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                Ocean View Resort
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="reservations.html" class="active">All Reservations</a>
+                <a href="new-reservation.html">New Reservation</a>
+                <a href="help.html">Help & Guide</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="btn btn-secondary" style="width: 100%; text-align: center;">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Reservations Database</h1>
+                <a href="new-reservation.html" class="btn btn-primary">+ Create New</a>
+            </div>
+
+            <div class="card">
+                <div class="filter-bar">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <input type="text" id="searchInput" placeholder="Search by Guest Name or RES-#...">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <select id="statusFilter">
+                            <option value="All">All Statuses</option>
+                            <option value="Active">Active</option>
+                            <option value="Checked Out">Checked Out</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <button id="searchBtn" class="btn btn-secondary">Search</button>
+                    <button id="clearBtn" class="btn btn-secondary" style="border:none; background:transparent;">Clear
+                        Filters</button>
+                </div>
+
+                <div class="table-container">
+                    <table id="reservationsTable">
+                        <thead>
+                            <tr>
+                                <th>Res #</th>
+                                <th>Guest</th>
+                                <th>Room</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" style="text-align: center;">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <span id="pageInfo" style="margin-right: 1rem; color: var(--text-secondary);"></span>
+                    <button class="btn btn-secondary" id="prevBtn" disabled>Previous</button>
+                    <button class="btn btn-secondary" id="nextBtn" disabled>Next</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/reservations.js"></script>
+</body>
+
+</html>
