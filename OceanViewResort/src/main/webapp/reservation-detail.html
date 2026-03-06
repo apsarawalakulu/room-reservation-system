@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Details - Ocean View Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-card {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .detail-group {
+            margin-bottom: 1rem;
+        }
+
+        .detail-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Modal for Cancellation */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 2.5rem;
+            border: 1px solid #888;
+            width: 450px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">Ocean View Resort</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="reservations.html" class="active">All Reservations</a>
+                <a href="new-reservation.html">New Reservation</a>
+                <a href="help.html">Help & Guide</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="btn btn-secondary" style="width: 100%; text-align: center;">Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header" style="justify-content: flex-start; gap: 1rem;">
+                <button class="btn btn-secondary" onclick="window.location.href='reservations.html'">← Back</button>
+                <h1 class="page-title">Reservation <span id="resNumTitle" style="color: var(--secondary-color);"></span>
+                </h1>
+                <span id="statusBadge" class="status-badge" style="margin-left:auto;">Loading...</span>
+            </div>
+
+            <div class="card" id="detailContent" style="display:none; max-width: 1000px; margin: 0 auto;">
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h3
+                            style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                            Guest Information</h3>
+                        <div class="detail-group">
+                            <div class="detail-label">Full Name</div>
+                            <div class="detail-value" id="guestName"></div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Contact Number</div>
+                            <div class="detail-value" id="guestContact"></div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Email Address</div>
+                            <div class="detail-value" id="guestEmail"></div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Address</div>
+                            <div class="detail-value" id="guestAddress"></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <h3
+                            style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                            Stay Details</h3>
+                        <div class="detail-group">
+                            <div class="detail-label">Room Allocation</div>
+                            <div class="detail-value" id="roomAlloc"></div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Dates</div>
+                            <div class="detail-value" id="stayDates"></div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Occupancy</div>
+                            <div class="detail-value" id="occupancy"></div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">Special Requests</div>
+                            <div class="detail-value" id="requests" style="font-weight: 400; font-style: italic;">None
+                            </div>
+                        </div>
+                        <div class="detail-group" id="cancelReasonGroup" style="display:none;">
+                            <div class="detail-label" style="color: var(--error-color);">Cancellation Reason</div>
+                            <div class="detail-value" id="cancelReason"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-bar" id="actionBar">
+                    <button class="btn btn-secondary" id="editBtn">Edit Details</button>
+                    <button class="btn btn-danger" id="cancelBtn">Cancel Booking</button>
+                    <button class="btn btn-primary" id="billBtn" style="margin-left: auto;">Generate & Print
+                        Bill</button>
+                </div>
+            </div>
+
+            <div id="loading" style="text-align:center; padding: 3rem;">Loading reservation data from server...</div>
+            <div id="errorMsg" class="error-message"
+                style="text-align:center; padding: 3rem; display:none; font-size: 1.2rem;"></div>
+        </main>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div id="cancelModal" class="modal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 1rem; color: var(--error-color);">Terminate Booking</h3>
+            <p style="margin-bottom: 1.5rem;">Are you sure you want to cancel this booking? This action is not
+                reversible.</p>
+            <div class="form-group">
+                <label>Reason for cancellation</label>
+                <textarea id="modalCancelReason" rows="3" required
+                    placeholder="Guest request, Payment failure, etc..."></textarea>
+            </div>
+            <div style="text-align: right; display: flex; gap: 1rem; justify-content: flex-end;">
+                <button class="btn btn-secondary" id="closeModalBtn" style="flex:1;">Go Back</button>
+                <button class="btn btn-danger" id="confirmCancelBtn" style="flex:1;">Confirm Cancellation</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/reservation-detail.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Ocean View Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                Ocean View Resort
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="reservations.html">All Reservations</a>
+                <a href="new-reservation.html">New Reservation</a>
+                <a href="help.html">Help & Guide</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="btn btn-secondary" style="width: 100%; text-align: center;">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Dashboard Overview</h1>
+            </div>
+
+            <div class="stats-grid"
+                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;">
+                <div class="card stat-card">
+                    <h3 style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Reservations
+                        Today</h3>
+                    <div id="statTotalToday" style="font-size: 3rem; font-weight: 600; color: var(--primary-color);">--
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <h3 style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Occupied
+                        Rooms</h3>
+                    <div id="statOccupied" style="font-size: 3rem; font-weight: 600; color: var(--secondary-color);">--
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <h3 style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Check-ins (7
+                        Days)</h3>
+                    <div id="statUpcoming" style="font-size: 3rem; font-weight: 600; color: var(--accent-color);">--
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 style="margin-bottom: 1.5rem;">Recent Reservations</h2>
+                <div class="table-container">
+                    <table id="recentReservationsTable">
+                        <thead>
+                            <tr>
+                                <th>Res #</th>
+                                <th>Guest</th>
+                                <th>Room</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

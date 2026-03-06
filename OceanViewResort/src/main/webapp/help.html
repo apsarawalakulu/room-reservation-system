@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Guide - Ocean View Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .help-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .help-section h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .help-section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .help-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .help-section ul li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">Ocean View Resort</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="reservations.html">All Reservations</a>
+                <a href="new-reservation.html">New Reservation</a>
+                <a href="help.html" class="active">Help & Guide</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="btn btn-secondary" style="width: 100%; text-align: center;">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Digital Subsystem Navigation Reference</h1>
+            </div>
+
+            <div class="card" style="max-width: 900px;">
+                <div class="help-section">
+                    <h3>1. Welcome to the New Digital Portal</h3>
+                    <p>This system replaces the paper ledgers. It guarantees atomic isolation of room allocations
+                        preventing double-bookings instantly while maintaining a secure logging stream across checkouts
+                        and automatic receipt compilations.</p>
+                </div>
+
+                <div class="help-section">
+                    <h3>2. Glossary of Terminology</h3>
+                    <ul>
+                        <li><strong>Reservation Code (RES-#####):</strong> Primary relational tracking string
+                            identifying a specific guest's visit timeframe linked accurately to system modules.</li>
+                        <li><strong>Standard Single/Double Rooming:</strong> Baseline hotel allocations tied directly to
+                            max constraints preventing single rooms seating 4 guests.</li>
+                        <li><strong>Deluxe/Suite Rooming:</strong> Larger formats enabling scaled occupancy thresholds
+                            commanding variable rate layers.</li>
+                        <li><strong>LKR Currency:</strong> All generated computational logic prints in Sri Lankan
+                            Rupees.</li>
+                        <li><strong>Check-in/Check-out Scope:</strong> Strictly bound calendar events forcing
+                            mathematical differences yielding correct Night calculations for taxes.</li>
+                    </ul>
+                </div>
+
+                <div class="help-section">
+                    <h3>3. Initiating a Booking Command</h3>
+                    <p>Triggering the <em>New Reservation</em> button brings a strict sequential form. Supply Guest
+                        constraints accurately without violating formats (ie: Phones must naturally be numeric).
+                        Selecting check bound dates opens the Inventory fetch stream where pressing <strong>Find
+                            Available Rooms</strong> scans DB overlaps validating what allocations strictly exist before
+                        allowing submission.</p>
+                </div>
+
+                <div class="help-section">
+                    <h3>4. Monitoring Operations Ledger</h3>
+                    <p>The <em>All Reservations</em> index acts as a global lookup filtering actively running guests vs
+                        historical footprints (Cancelled/Checked Out) ensuring accurate visual rendering across
+                        thousands of rows quickly using paginated network limits.</p>
+                </div>
+
+                <div class="help-section">
+                    <h3>5. Finalization and Tax Exports</h3>
+                    <p>Upon review screens, <strong>Cancel Booking</strong> forcibly halts the sequence destroying
+                        matching reservations while extracting formal reason traces. Contrastly, <strong>Generate
+                            Bill</strong> abstracts core variables running VAT scaling logic formatting outputs
+                        correctly hiding global UI arrays strictly maintaining printable documents mapped to paper
+                        constraints perfectly.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+</body>
+
+</html>
